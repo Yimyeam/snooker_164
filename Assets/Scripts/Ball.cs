@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum BallColor
 {
@@ -12,13 +14,20 @@ public enum BallColor
     Black,
 }
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private int point;
 
     [SerializeField]
     private BallColor color;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log(point);
+        GameManager.instance.PlayerScore += point;
+        Destroy(gameObject);
+    }
 
     void Start()
     {
