@@ -8,24 +8,25 @@ public class Hole : MonoBehaviour
 
         if (b != null)
         {
-            GameManager.instance.PlayerScore += b.Point;
+            GameManager.instance.ShowScoreText(b.Point);
             Destroy(b.gameObject);
         }
+
     }
 
 
 
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    //// Start is called once before the first execution of Update after the MonoBehaviour is created
+    //void Start()
+    //{
         
-    }
+    //}
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 }

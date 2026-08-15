@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject cueBall;
 
+    [SerializeField]
     private float xInput = 0f;
+
+    [SerializeField]
+    private GameObject ballline;
+
+    [SerializeField]
+    private GameObject cam;
+
+    [SerializeField]
+    private TMP_Text notiText;
 
     public static GameManager instance;
 
@@ -39,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        RotateBall();
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             ShootBall();
 
@@ -48,6 +60,8 @@ public class GameManager : MonoBehaviour
             xInput = 0.5f;
         else
             xInput = 0f;
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+            StopBall();
     }
 
     private void SetBall(BallColor col, int i)
@@ -64,11 +78,46 @@ public class GameManager : MonoBehaviour
     {
         Rigidbody rd = cueBall.GetComponent<Rigidbody>();
         rd.AddRelativeForce(Vector3.forward * 50, ForceMode.Impulse);
+
+        ballline.SetActive(false);
+        cam.transform.parent = null;
+        cam.transform.position = new Vector3(0f, 30f, -42f);
+        cam.transform.eulerAngles = new Vector3(45f, 0f, 0f);
     }
 
     private void RotateBall()
     {
         if (cueBall != null)
-            cueBall.transform.Rotate(new Vector3(0f, 1f, 0f));
+            cueBall.transform.Rotate(new Vector3(0f, xInput, 0f));
+    }
+
+    private void StopBall()
+    {
+        Rigidbody rb = cueBall.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        cueBall.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+
+        ballline.SetActive(true);
+        CameraBehindCueBall();
+    }
+
+    private void CameraBehindCueBall()
+    {
+        cam.transform.parent = cueBall.transform;
+        cam.transform.position = cueBall.transform.position + new Vector3(0f, 7f, -15f);
+        cam.transform.eulerAngles = new Vector3(30f, 0f, 0f);
+    }
+
+    public void ShowScoreText(int n)
+    {
+        playerScore += n;
+        notiText.text = $"Ball Point:{n}\nTotal Score:{playerScore}";
+
+    }
+    public void ShowString(string s)
+    {
+        notiText.text = s;
+
     }
 }
