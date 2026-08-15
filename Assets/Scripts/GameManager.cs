@@ -51,17 +51,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         RotateBall();
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             ShootBall();
-
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+            StopBall();
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             xInput = -0.5f;
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
             xInput = 0.5f;
         else
             xInput = 0f;
-        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
-            StopBall();
+
     }
 
     private void SetBall(BallColor col, int i)

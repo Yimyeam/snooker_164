@@ -8,6 +8,10 @@ public class Hole : MonoBehaviour
 
         if (b != null)
         {
+            if (b.Point == 0)
+            {
+                GameManager.instance.ShowString($"");
+            }
             GameManager.instance.ShowScoreText(b.Point);
             Destroy(b.gameObject);
         }
