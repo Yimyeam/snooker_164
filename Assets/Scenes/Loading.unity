@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480a770e74cb27c42bd4453ced04bf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Loading
-  slider: {fileID: 0}
+  slider: {fileID: 645949768}
   waitSeconds: 1
 --- !u!114 &1554578242
 MonoBehaviour:
