@@ -2365,6 +2365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   adjustPanel: {fileID: 2106797586}
+  volumeSlider: {fileID: 1182472658}
 --- !u!114 &1539580281
 MonoBehaviour:
   m_ObjectHideFlags: 0
