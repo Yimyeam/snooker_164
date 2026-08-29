@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     public void ShowScoreText(int n)
     {
         playerScore += n;
-        notiText.text = $"Ball Point:{n}\nTotal Score:{playerScore}";
+        notiText.text = $"Ball Point:{n}\nTotal Score: {playerScore}";
 
     }
     public void ShowString(string s)
