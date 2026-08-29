@@ -35,8 +35,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void ShowHideAdjustPanel(bool flag)
+    public void ShowHideAdjustPanel(bool flag) 
     {
         adjustPanel.SetActive(flag);
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioManager.instance.AdjustMasterVolume(volume);
     }
 }
