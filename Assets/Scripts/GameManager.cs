@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     private float xInput = 0f;
 
     [SerializeField]
+    private float rotateSpeed = 0.05f;
+
+    [SerializeField]
+    private float fastRotateSpeed = 0.15f;
+
+    [SerializeField]
     private GameObject ballLine;
 
     [SerializeField]
@@ -57,16 +63,27 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             ShootBall();
 
-        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-            xInput = -0.05f;
-        else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
-            xInput = 0.05f;
-        else
-            xInput = 0f;
-
         if (Keyboard.current.backspaceKey.wasPressedThisFrame)
             StopBall();
 
+        if (Keyboard.current.leftShiftKey.isPressed)
+        {
+            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+                xInput = -fastRotateSpeed;
+            else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+                xInput = fastRotateSpeed;
+            else
+                xInput = 0f;
+        }
+        else
+        {
+            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+                xInput = -rotateSpeed;
+            else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+                xInput = rotateSpeed;
+            else
+                xInput = 0f;
+        }
     }
 
     private void SetBall(BallColor col, int i)
