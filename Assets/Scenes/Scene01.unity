@@ -1164,7 +1164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 770729502764405044, guid: 97c66e40c72e2b941846e924ad26caad, type: 3}
       propertyPath: m_LinearDamping
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1152455228257116800, guid: 97c66e40c72e2b941846e924ad26caad, type: 3}
       propertyPath: m_Enabled
