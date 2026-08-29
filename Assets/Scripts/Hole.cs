@@ -20,6 +20,7 @@ public class Hole : MonoBehaviour
             }
 
             Destroy(b.gameObject);
+            AudioManager.instance.PlaySFX(0);
         }
 
     }
