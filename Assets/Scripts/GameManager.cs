@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private float xInput = 0f;
 
     [SerializeField]
-    private GameObject ballline;
+    private GameObject ballLine;
 
     [SerializeField]
     private GameObject cam;
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        CameraBehindCueBall();
+
         SetBall(BallColor.Red, 1);
         SetBall(BallColor.Yellow, 2);
         SetBall(BallColor.Green, 3);
@@ -54,14 +56,16 @@ public class GameManager : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             ShootBall();
-        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
-            StopBall();
+
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-            xInput = -0.5f;
+            xInput = -0.05f;
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
-            xInput = 0.5f;
+            xInput = 0.05f;
         else
             xInput = 0f;
+
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+            StopBall();
 
     }
 
@@ -80,7 +84,7 @@ public class GameManager : MonoBehaviour
         Rigidbody rd = cueBall.GetComponent<Rigidbody>();
         rd.AddRelativeForce(Vector3.forward * 50, ForceMode.Impulse);
 
-        ballline.SetActive(false);
+        ballLine.SetActive(false);
         cam.transform.parent = null;
         cam.transform.position = new Vector3(0f, 30f, -42f);
         cam.transform.eulerAngles = new Vector3(45f, 0f, 0f);
@@ -99,7 +103,7 @@ public class GameManager : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         cueBall.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 
-        ballline.SetActive(true);
+        ballLine.SetActive(true);
         CameraBehindCueBall();
     }
 
